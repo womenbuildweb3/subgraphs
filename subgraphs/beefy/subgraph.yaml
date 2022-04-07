@@ -1,6 +1,8 @@
 specVersion: 0.0.2
+description: Beefy Finance for Messari
 schema:
   file: ./schema.graphql
+# features: nonFatalErrors
 dataSources:
   - kind: ethereum
     name: BEP20
@@ -8,7 +10,7 @@ dataSources:
     source:
       address: "0xCa3F508B8e4Dd382eE878A314789373D80A5190A"
       abi: BEP20
-      startBlock: 9164937
+      startBlock: 649704
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -16,6 +18,20 @@ dataSources:
       entities:
         - Approval
         - Transfer
+        - Token
+        - RewardToken
+        - Protocol
+        - YieldAggregator
+        - UsageMetricsDailySnapshot
+        - FinancialsDailySnapshot
+        - Pool
+        - PoolDailySnapshot
+        - VaultFee
+        - Vault
+        - VaultDailySnapshot
+        - Event
+        - Deposit
+        - Withdraw
       abis:
         - name: BEP20
           file: ./abis/BEP20.json
@@ -23,5 +39,5 @@ dataSources:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
+          handler: handleTransfer  
       file: ./src/mapping.ts
