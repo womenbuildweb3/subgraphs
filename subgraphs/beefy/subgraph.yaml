@@ -18,20 +18,20 @@ dataSources:
       entities:
         - Approval
         - Transfer
-        - Token
-        - RewardToken
-        - Protocol
-        - YieldAggregator
-        - UsageMetricsDailySnapshot
-        - FinancialsDailySnapshot
-        - Pool
-        - PoolDailySnapshot
-        - VaultFee
-        - Vault
-        - VaultDailySnapshot
-        - Event
-        - Deposit
-        - Withdraw
+        #- Token
+        #- RewardToken
+        #- Protocol
+        #- YieldAggregator
+        #- UsageMetricsDailySnapshot
+        #- FinancialsDailySnapshot
+        #- Pool
+        #- PoolDailySnapshot
+        #- VaultFee
+        #- Vault
+        #- VaultDailySnapshot
+        #- Event
+        #- Deposit
+        #- Withdraw
       abis:
         - name: BEP20
           file: ./abis/BEP20.json
@@ -39,5 +39,51 @@ dataSources:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
         - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer  
+          handler: handleTransfer
+        # - event: Token
+        #   handler: handleToken
+        # - event: RewardToken
+        #   handler: handleRewardToken
+        # - event: Protocol
+        #   handler: handleProtocol
+        # - event: YieldAggregator
+        #   handler: handleYieldAggregator
+        # - event: UsageMetricsDailySnapshot
+        #   handler: handleUsageMetricsDailySnapshot
+        # - event: FinancialsDailySnapshot
+        #   handler: handleFinancialsDailySnapshot
+        # - event: Pool
+        #   handler: handlePool
+        # - event: PoolDailySnapshot
+        #   handler: handlePoolDailySnapshot
+        # - event: VaultFee
+        #   handler: handleVaultFee
+        # - event: Vault
+        #   handler: handleVault
+        # - event: Event
+        #   handler: handleEvent
+        # - event: Deposit
+        #   handler: handleDeposit
+        # - event: Withdraw
+        #   handler: handleWithdraw
       file: ./src/mapping.ts
+  - kind: ethereum
+    name: LaunchPool
+    network: bsc
+    source:
+      address: "0x49208D4679787136FA9449ca37874B8cc543A508"
+      abi: LaunchPool
+      startBlock: 16570838 
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - RewardToken
+      abis:
+        - name: LaunchPool
+          file: ./abis/LaunchPool.json
+      eventHandlers:
+        - event: RewardAdded(uint256)
+          handler: handleRewardToken
+      file: ./src/launchpool.ts

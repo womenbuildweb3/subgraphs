@@ -1,7 +1,8 @@
 import {
   Approval as ApprovalEvent,
-  Transfer as TransferEvent
+  Transfer as TransferEvent,
 } from "../generated/BEP20/BEP20"
+
 import { Approval, Transfer } from "../generated/schema"
 
 export function handleApproval(event: ApprovalEvent): void {
