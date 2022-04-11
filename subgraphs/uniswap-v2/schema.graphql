@@ -167,7 +167,7 @@ interface Pool {
   " Token that is minted to track ownership of position in protocol "
   outputToken: Token!
 
-  " Aditional tokens that are given as reward for position in a protocol "
+  " Aditional tokens that are given as reward for position in a protocol, usually in liquidity mining programs. e.g. SUSHI in the Onsen program, MATIC for Aave Polygon "
   rewardTokens: [RewardToken!]
 
   ##### Quantitative Data #####
@@ -287,7 +287,10 @@ enum LiquidityPoolFeeType {
   DYNAMIC_TRADING_FEE
 
   " Fixed fee that's paid to the protocol, as a percentage of the traded amount. e.g. 0.05% for Sushiswap, 0.02% for Curve v1. "
-  PROTOCOL_FEE
+  FIXED_PROTOCOL_FEE
+
+  " Some protocols use dynamic protocol fees (e.g., Bancor v2). Set `feePercentage` as 0 but handle the dynamic fees in the mapping code. "
+  DYNAMIC_PROTOCOL_FEE
 }
 
 type LiquidityPoolFee @entity {
@@ -311,7 +314,7 @@ type LiquidityPool @entity {
   " Token that is minted to track ownership of position in protocol "
   outputToken: Token!
 
-  " Aditional tokens that are given as reward for position in a protocol "
+  " Aditional tokens that are given as reward for position in a protocol, usually in liquidity mining programs. e.g. SUSHI in the Onsen program, MATIC for Aave Polygon "
   rewardTokens: [RewardToken!]
 
   ##### Quantitative Data #####
